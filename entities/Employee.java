@@ -4,67 +4,61 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Employee {
-// properties
-    private int numberEmployees, id;
-    private double salary;
     private String name;
-    int increaseID = 0;
-    List<Integer> idEmployee = new ArrayList<>();
-    List<String> nameEmployee = new ArrayList<>();
-    List<Double> salaryEmployee = new ArrayList<>();
+    private Integer id;
+    private Double salary;
 
-// constructors
-    public Employee() {}
+    List<Employee> employee = new ArrayList<>();
 
-    public Employee(int id, String name, double salary){
-        this.id = id;
+    // constructors
+    public Employee() {
+    }
+
+    public Employee(String name, Integer id, Double salary) {
         this.name = name;
+        this.id = id;
         this.salary = salary;
     }
-// add list method
-    public void addList(int id, String name, double salary){
-        idEmployee.add(id);
-        nameEmployee.add(name);
-        salaryEmployee.add(salary);
 
-    }
-// ID verification method
-    public int checkId(int id) {
-        List<Integer> result = idEmployee.stream().filter(x -> x == id).toList();
-        for (int j:result) {
-            if (j == id){
-                return 1;
-            }
-            else{
-                return 0;
-            }
-        }
-        return id;
-    }
-// increase salary
-    public double increaseSalary(int id){
-        increaseID = idEmployee.indexOf(id);
-        return salaryEmployee.get(idEmployee.indexOf(id));
+    // method
+    public void increaseSalary(double percentage){
+        salary += salary * percentage / 100 ;
     }
 
-// get and set
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public double getSalary() {
-        return salary;
-    }
-
-    public void setSalary(double salary) {
-        salaryEmployee.add(increaseID, salary);
-    }
-
+// gets and setters
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Double salary) {
+        this.salary = salary;
+    }
+
+    // to String
+
+    @Override
+    public String toString() {
+        return
+                id +
+                ", " +
+                name +
+                ", " +
+                String.format("%.2f", salary);
     }
 }
